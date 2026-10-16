@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" href="/favicon.webp" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>ai-expense-tracker</title>
+  </head>
+  <body>
+    <div id="root" class="font-sans"></div>
+    <script>
+      (function () {
+        const storageKey = "theme";
+        const root = document.documentElement;
+        try {
+          const savedTheme = localStorage.getItem(storageKey);
+          const prefersDark = window.matchMedia(
+            "(prefers-color-scheme: dark)",
+          ).matches;
+          const isDark =
+            savedTheme === "dark" || (savedTheme !== "light" && prefersDark);
+          root.classList.toggle("dark", isDark);
+          root.classList.toggle("light", !isDark);
+          root.style.colorScheme = isDark ? "dark" : "light";
+        } catch {
+          const isDark = window.matchMedia(
+            "(prefers-color-scheme: dark)",
+          ).matches;
+          root.classList.toggle("dark", isDark);
+          root.classList.toggle("light", !isDark);
+          root.style.colorScheme = isDark ? "dark" : "light";
+        }
+      })();
+    </script>
+    <script type="module" src="main.jsx"></script>
+  </body>
+</html>
